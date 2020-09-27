@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{%block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h1>{{ object.sap_id }}</h1>
+            <p>{{ object.hostname }}</p>
+            <p>{{ object.created_on }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <a class="btn btn-primary" href="{% url 'router_update' object.id %}"> Update </a>
+            <a class="btn btn-danger" href="{% url 'router_delete' object.id %}"> Delete </a></li>
+        </div>
+
+    </div>
+
+
+</div>
+
+{%endblock%}

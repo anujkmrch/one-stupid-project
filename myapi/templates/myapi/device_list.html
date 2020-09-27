@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{%block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h1>Routers</h1>
+
+            
+            <table class="table table-hover datatable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>SAP ID</th>
+                        <th>Hostname</th>
+                        <th>Loopback</th>
+                        <th>Macaddress</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for router in object_list %}
+                <tr>
+                    <td>{{ router.id }}</td>
+                    <td>{{ router.sap_id }}</td>
+                    <td>{{ router.hostname }}</td>
+                    <td>{{ router.loopback }}</td>
+                    <td>{{ router.mac_address }}</td>
+                    <td>
+                        <a href="{% url 'router_detail' router.id %}"> View </a> |
+                        <a href="{% url 'router_update' router.id %}"> Update </a> |
+                        <a href="{% url 'router_delete' router.id %}"> Delete </a></td>
+                </tr>
+                {% empty %}
+                <tr><td>No router added. <a href="url 'router_create'">Add new router</a></td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{%block custom_css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+{%endblock%}
+
+{% block custom_js%}
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+        $('.datatable').DataTable();
+    } );
+    </script>
+{%endblock%}
